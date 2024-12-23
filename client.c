@@ -77,6 +77,7 @@ static void	send_massige(int p_id, char *massige)
 	send_char(p_id, '\0');
 }
 
+
 static void	send_len(int p_id, unsigned int len)
 {
 	int i;
@@ -112,7 +113,7 @@ unsigned int	ft_strlen(char *str)
 
 int main(int argc, char *argv[])
 {
-	pid_t			p_id;
+	int				p_id;
 	unsigned int	len;
 	char			*massige;
 
