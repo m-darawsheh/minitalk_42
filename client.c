@@ -32,7 +32,10 @@ static bool	pid_error_input(char *p_id)
 	while (*p_id)
 	{
 		if (*p_id < '0' || *p_id > '9')
+		{
+			return (false);
 			exit(1);
+		}
 		p_id++;
 	}
 	return (true);
