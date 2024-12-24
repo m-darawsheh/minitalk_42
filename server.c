@@ -29,6 +29,16 @@ unsigned int	base_power(int base, int power)
 	return (result);
 }
 
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		write(1, &str[i], 1);
+	write(1, "\n", 1);
+}
+
 static unsigned int	take_length(int signal)
 {
 	unsigned int	resutlt;
@@ -74,7 +84,7 @@ static void	link_charachters(char **massige, char *curent_char, unsigned int *in
 	if (index_bit == 8 && (*curent_char == 0))
 	{
 		(*massige)[(*index_char)] = '\0';
-		printf("%s \n", *massige);
+		ft_putstr(*massige);
 		free (*massige);
 		*massige = NULL;
 		reset_all_values(len, curent_char, index_char, bit_for_len);
@@ -115,7 +125,6 @@ void    sig_handler(int signal)
 	}
 	else
 		link_charachters(&massige, &curent_char, &index_char, signal, &len, &bit_for_len);
-
 }
 
 int main(void)
