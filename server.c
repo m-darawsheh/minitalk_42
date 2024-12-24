@@ -12,7 +12,7 @@
 
 #include "minitalk.h"
 
-int index_bit = 0;
+int	index_bit = 0;
 
 unsigned int	base_power(int base, int power)
 {
@@ -35,7 +35,10 @@ void	ft_putstr(char *str)
 
 	i = 0;
 	while (str[i])
+	{
 		write(1, &str[i], 1);
+		i++;
+	}
 	write(1, "\n", 1);
 }
 
@@ -127,10 +130,21 @@ void    sig_handler(int signal)
 		link_charachters(&massige, &curent_char, &index_char, signal, &len, &bit_for_len);
 }
 
+void	ft_putnpr(int n)
+{
+	if (n > 9)
+		ft_putnpr(n / 10);
+	write(1, &"0123456789"[n % 10], 1);
+}
+
 int main(void)
 {
+	int	pid;
 
-	printf("PID: %d\n", getpid());
+	pid = getpid();
+	write(1, "Server PID: ", 13);
+	ft_putnpr(pid);
+	write(1, "\n", 1);
 	signal(SIGUSR1, sig_handler);
 	signal(SIGUSR2, sig_handler);
 	while (1)
