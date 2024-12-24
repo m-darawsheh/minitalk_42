@@ -33,7 +33,7 @@ static bool	pid_error_input(char *p_id)
 	{
 		if (*p_id < '0' || *p_id > '9')
 		{
-			return (false);
+			write(1, "Error\n", 6);
 			exit(1);
 		}
 		p_id++;
@@ -51,12 +51,18 @@ static void	send_char(int p_id, char c)
 		if (c & 1)
 		{
 			if(kill(p_id, SIGUSR2) == -1)
+			{
+				write (1, "Error send signal\n", 6);
 				exit(1);
+			}
 		}
 		else 
 		{
 			if (kill(p_id, SIGUSR1) == -1)
+			{
+				write (1, "Error send signal\n", 6);
 				exit(1);
+			}
 		}
 		c = c >> 1;
 		i++;
@@ -88,12 +94,18 @@ static void	send_len(int p_id, unsigned int len)
 		if (len & 1)
 		{
 			if (kill(p_id, SIGUSR2) == -1)
-			exit(1);
+			{
+				write (1, "Error send signal\n", 6);
+				exit(1);
+			}
 		}
 		else
 		{
 			if (kill(p_id, SIGUSR1) == -1)
-			exit(1);
+			{
+				write (1, "Error send signal\n", 6);
+				exit(1);
+			}
 		}
 		len = len >> 1;
 		i++;
