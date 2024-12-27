@@ -18,4 +18,11 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <stdlib.h>
+
+void			ft_putnpr(int n);
+int				base_power(int base, int power);
+void			ft_putstr(char *str);
+unsigned int	ft_strlen(char *str);
+int				convert(const char *str);
+
 #endif
